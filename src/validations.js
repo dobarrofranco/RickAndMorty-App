@@ -4,9 +4,13 @@ export const validaciones = (userData) => {
 
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userData.email)) {
         errors.email = 'Debe ser un email válido'
-    } else if (userData.email.length === 0) {
+    }
+    
+    if (userData.email.length === 0) {
         errors.email = 'El email está vacio'
-    } else if (userData.email.length > 35) {
+    }
+    
+    if (userData.email.length > 35) {
         errors.email = 'Su email no puede superar los 35 caracteres'
     }
 
@@ -17,13 +21,19 @@ export const validaciones = (userData) => {
     if (userData.password.length > 10) {
         errors.password = 'La contraseña tiene que tener entre 6 y 10 caracteres'
     } 
-    else if (!regex.test(userData.password)) {
+    
+    if (!regex.test(userData.password)) {
         errors.password = 'La contraseña tiene que tener al menos un número'
     }    
 
     return errors;
 }
 
+let data = {
+    email: "mr.fra@gam.com",
+    password: "pass123"
+}
 
+console.log(validaciones(data));
   
 

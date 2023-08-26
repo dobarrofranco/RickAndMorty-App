@@ -1,12 +1,12 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate, Route, Routes, useLocation } from 'react-router-dom';
-import Cards from './components/Cards.jsx';
-import Nav from './components/Nav.jsx';
-import Detail from './components/Detail';
-import About from './components/About';
-import PageNotFound from './components/PageNotFound';
-import Form from './components/Form';
+import Cards from './components/Cards/Cards.jsx';
+import Nav from './components/Nav/Nav.jsx';
+import Detail from './components/Detail/Detail';
+import About from './components/About/About';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import Form from './components/Form/Form';
 import axios from "axios";
 
 function App() {
@@ -74,7 +74,12 @@ function App() {
 
    function logOut() {
       setAccess(false);
-      navigate('/')
+   }
+
+   function notMove() {
+      if (location.pathname === '/' && setAccess(false)) {
+         navigate('/')
+      }
    }
 
    useEffect(() => {
@@ -84,7 +89,7 @@ function App() {
    return (
       <div className='App'>
          
-         {location.pathname !== '/' ? <Nav onSearch={onSearch} randomize={randomHandler}></Nav> : null} 
+         {location.pathname !== '/' ? <Nav onSearch={onSearch} randomize={randomHandler} logOut={logOut} notMove={notMove}></Nav> : null} 
 
          <Routes>
 
@@ -104,8 +109,12 @@ function App() {
             />
 
             <Route
+            
+            />
+
+            <Route
             path='/'
-            element={<Form login={login} logOut={logOut}/>}
+            element={<Form login={login}/>}
             />
 
             <Route

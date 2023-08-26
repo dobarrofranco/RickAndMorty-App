@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validaciones } from "../validations";
+import { validaciones } from "../../validations";
 
 function Form({ login }) {
     const [userData, setUserData] = useState({
@@ -27,22 +27,37 @@ function Form({ login }) {
         login(userData);
     }
 
+    function disableHandler() {
+        let disabled;
+
+        if (errors.email || errors.password) {
+            disabled = true;
+        }else{
+            disabled = false;
+        }
+        return disabled;
+    }
+
     return (
         
-        <form>
-            <div>
+        <form onSubmit={handleSubmit}>
+            
                 <label>Email</label>
                 <br />
+                
                 <input type="text" name="email" value={userData.email}  placeholder="Su e-mail" onChange={handleChange}/>
                 <p>{errors.email}</p>
                 <br />
+
                 <label>Contraseña</label>
                 <br />
+
                 <input type="password" name="password" value={userData.password} placeholder="Su contraseña" onChange={handleChange}/>
                 <p>{errors.password}</p>
                 <br />
-                <button onClick={handleSubmit}>Submit</button>
-            </div>
+
+                <button disabled={disableHandler()}>Submit</button>
+
         </form> 
         
     )
