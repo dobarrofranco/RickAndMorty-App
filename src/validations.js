@@ -28,12 +28,5 @@ export const validaciones = (userData) => {
 
     return errors;
 }
-
-let data = {
-    email: "mr.fra@gam.com",
-    password: "pass123"
-}
-
-console.log(validaciones(data));
   
 

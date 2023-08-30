@@ -17,6 +17,10 @@ function Nav({onSearch, randomize, logOut, notMove}) {
             <Link to="/">
                 <button onClick={[logOut, notMove]}>Log out</button>
             </Link>
+
+            <Link to="/favorites">
+                <button>Favoritos</button>
+            </Link>
                 
         </div>
     )

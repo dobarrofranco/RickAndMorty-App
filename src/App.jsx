@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav.jsx';
 import Detail from './components/Detail/Detail';
 import About from './components/About/About';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Favorites from './components/Favorites/Favorites';
 import Form from './components/Form/Form';
 import axios from "axios";
 
@@ -109,10 +110,6 @@ function App() {
             />
 
             <Route
-            
-            />
-
-            <Route
             path='/'
             element={<Form login={login}/>}
             />
@@ -125,6 +122,11 @@ function App() {
             <Route
             path='*'
             element={<Navigate to='/404'/>}
+            />
+
+            <Route
+            path='/favorites'
+            element={<Favorites/>}
             />
 
          </Routes>
