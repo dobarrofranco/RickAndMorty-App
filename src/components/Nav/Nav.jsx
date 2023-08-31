@@ -1,7 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-function Nav({onSearch, randomize, logOut, notMove}) {
+function Nav({onSearch, randomize, logOut, /*notMove*/}) {
     return (
         <div>
             <SearchBar onSearch={onSearch} randomize={randomize}/>
@@ -15,7 +15,7 @@ function Nav({onSearch, randomize, logOut, notMove}) {
             </Link>
 
             <Link to="/">
-                <button onClick={[logOut, notMove]}>Log out</button>
+                <button onClick={[logOut/*, notMove*/]}>Log out</button>
             </Link>
 
             <Link to="/favorites">

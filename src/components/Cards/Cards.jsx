@@ -1,8 +1,9 @@
 import Card from '../Card/Card';
+import './Cards.modules.css'
 
 export default function Cards({characters, onClose}) {
    return(
-      <div>
+      <div className='cards'>
          {characters.map(element => {
             return <Card
             onClose={onClose}

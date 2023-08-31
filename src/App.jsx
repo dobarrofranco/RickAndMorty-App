@@ -77,11 +77,11 @@ function App() {
       setAccess(false);
    }
 
-   function notMove() {
-      if (location.pathname === '/' && setAccess(false)) {
-         navigate('/')
-      }
-   }
+   // function notMove() {
+   //    if (location.pathname === '/' && setAccess(false)) {
+         
+   //    }
+   // }
 
    useEffect(() => {
       !access && navigate('/');
@@ -90,7 +90,7 @@ function App() {
    return (
       <div className='App'>
          
-         {location.pathname !== '/' ? <Nav onSearch={onSearch} randomize={randomHandler} logOut={logOut} notMove={notMove}></Nav> : null} 
+         {location.pathname === '/home' ? <Nav onSearch={onSearch} randomize={randomHandler} logOut={logOut} /*notMove={notMove}*/></Nav> : null}
 
          <Routes>
 

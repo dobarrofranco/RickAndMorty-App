@@ -3,10 +3,18 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
+import './Card.modules.css'
 
 function Card({name, status, species, gender, origin, image, onClose, id, addFav, removeFav, myFavorites}) {
 
    const [isFav, setIsFav] = useState(false);
+   const [closeBtn, setCloseBtn] = useState(true);
+
+   useEffect(()=>{
+      if (!onClose) {
+         setCloseBtn(false)
+      }
+   },[])
 
    function handleFavorite() {
       if (isFav) {
@@ -37,17 +45,19 @@ function Card({name, status, species, gender, origin, image, onClose, id, addFav
             )
          }
 
-         <button onClick={()=>{onClose(id)}}>X</button>
+         {closeBtn && <button onClick={()=>{onClose(id)}}>X</button>}
+         
 
          <Link to={`/detail/${id}`}>
             <h2>Nombre: {name}</h2>
          </Link>
-
-         <h2>Estado: {status}</h2>
-         <h2>Especie: {species}</h2>
-         <h2>Género: {gender}</h2>
-         <h2>Origen: {origin}</h2>
-         <img src={image} alt={name}/>
+         
+            <h2>Estado: {status}</h2>
+            <h2>Especie: {species}</h2>
+            <h2>Género: {gender}</h2>
+            <h2>Origen: {origin}</h2>
+            <img src={image} alt={name}/>
+         
       </div>
    );
 }
