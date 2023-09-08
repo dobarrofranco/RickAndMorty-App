@@ -1,0 +1,48 @@
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+  
+    --primario: #77008f;
+    --secundario: #34a500;
+    --gris: #e1e1e1;
+    --blanco: #ffffff;
+    --negro: #000000;
+  }
+  html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem = 10px */    
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    margin: 0;
+    font-family: var(--fuenteParrafos);
+    font-size: 1.6rem;
+  }
+  
+  /** Globales **/
+  .contenedor {
+    width: min(90%, 120rem);
+    margin: 0 auto;
+  }
+  a {
+    text-decoration: none;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--fuenteHeading);
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  /** Utilidades **/
+  .no-margin {
+    margin: 0;
+  }
+  .no-padding {
+    padding: 0;
+  }
+  .centrar-texto {
+    text-align: center;
+  }
