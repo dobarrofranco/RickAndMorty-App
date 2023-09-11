@@ -15,10 +15,10 @@ function App() {
    
    const location = useLocation();
 
-   const [access, setAccess] = useState(false);
    const navigate = useNavigate();
-   const EMAIL = 'mr.francodobarro@gmail.com'
-   const PASSWORD = 'pass123'
+
+   // const EMAIL = 'mr.francodobarro@gmail.com'
+   // const PASSWORD = 'pass123'
 
 
    // https://rym2-production.up.railway.app/api/character/${id}?key=henrym-dobarrofranco
@@ -29,12 +29,13 @@ function App() {
          alert('Ya existe!!')
          return
       }else{
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-      if (data.name) {
-         setCharacters((oldChars) => [...oldChars, data]);
-      } else {
-         window.alert('¡No hay personajes con este ID!');
-      }
+      axios(`http://localhost:3001/rickandmorty/character/${id}`)
+      .then(({ data }) => {
+         if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         } else {
+            window.alert('¡No hay personajes con este ID!');
+         }
       })
       }  
    }
@@ -64,19 +65,24 @@ function App() {
 
    }
 
+   const [access, setAccess] = useState(false);
+
    function login(userData) {
-      if (userData.email === EMAIL && userData.password === PASSWORD) {
-         setAccess(true);
-         navigate('/home');
-      }else{
-         alert('credenciales incorrectas')
-         return;
-      }
+      const { email, password } = userData;
+
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      
+      axios(URL + `?email=${email}&password=${password}`)
+         .then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+   });
    }
 
-   function logOut() {
-      setAccess(false);
-   }
+   // function logOut() {
+   //    setAccess(false);
+   // }
 
    // function notMove() {
    //    if (location.pathname === '/' && setAccess(false)) {
@@ -89,11 +95,11 @@ function App() {
    }, [access]);
 
    return (
-      <body> 
+      
       
       <div className='App'>
          
-         {location.pathname === '/home' ? <Nav onSearch={onSearch} randomize={randomHandler} logOut={logOut} /*notMove={notMove}*/></Nav> : null}
+         {location.pathname === '/home' ? <Nav onSearch={onSearch} randomize={randomHandler}></Nav> : null}
 
          <Routes>
 
@@ -134,7 +140,7 @@ function App() {
 
          </Routes>
       </div>
-   </body>
+   
    );
 }
 

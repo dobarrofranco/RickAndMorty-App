@@ -9,19 +9,29 @@ export default function favorites(state = initialState, {type, payload}) {
     let sorted;
     switch(type) {
         case ADD_FAV:
-            return {
+            return { 
                 ...state,
-                myFavorites: [...state.myFavorites, payload],
-                allCharacters: [...state.myFavorites, payload]
-                //* Que se vaya copiando en dos arrays al mismo tiempo. 
-            }
+                myFavorites: payload, 
+                allCharacters: payload 
+            };
+            // return {
+            //     ...state,
+            //     myFavorites: [...state.myFavorites, payload],
+            //     allCharacters: [...state.myFavorites, payload]
+            //     --> Que se vaya copiando en dos arrays al mismo tiempo. 
+            // }
         
         case REMOVE_FAV:
-            return {
+            return { 
                 ...state,
-                myFavorites: state.myFavorites.filter(character => character.id !== Number(payload)),
-                allCharacters: state.allCharacters.filter(character => character.id !== Number(payload))
-            }
+                myFavorites: payload,
+                allCharacters: payload 
+            };
+            // return {
+            //     ...state,
+            //     myFavorites: state.myFavorites.filter(character => character.id !== Number(payload)),
+            //     allCharacters: state.allCharacters.filter(character => character.id !== Number(payload))
+            // }
         
         case FILTER:
             return {
@@ -43,7 +53,7 @@ export default function favorites(state = initialState, {type, payload}) {
 
             return {
                 ...state,
-                myFavorites: [...sorted] //? Sorted sin spread funciona?
+                myFavorites: [...sorted]
             }
         }
 

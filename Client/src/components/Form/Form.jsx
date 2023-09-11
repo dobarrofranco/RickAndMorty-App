@@ -21,8 +21,9 @@ function Form({ login }) {
         });
 
         setErrors(validaciones({
-            ...userData, 
-            [event.target.name]:event.target.value}));
+            ...userData,
+            [event.target.name]: event.target.value
+        }));
     }
 
     const handleSubmit = (event) => {
@@ -35,37 +36,45 @@ function Form({ login }) {
 
         if (errors.email || errors.password) {
             disabled = true;
-        }else{
+        } else {
             disabled = false;
         }
         return disabled;
     }
 
     return (
-        <div className={style.formulario}>
 
-            <form onSubmit={handleSubmit}>
-                
+        <div className={style.backForm}>
+
+            <div className={style.boxForm}></div>
+
+            <div className={style.form}>
+
+                <form onSubmit={handleSubmit}>
 
                     <p>Email</p>
-                    <br />
-                    
-                    <input type="text" name="email" value={userData.email}  placeholder="Su e-mail" onChange={handleChange}/>
+                    <div >
+                        <input type="text" name="email" value={userData.email} placeholder="Su e-mail" onChange={handleChange} className={style.inputStyle} />
+                    </div>
                     <p>{errors.email}</p>
+
                     <br />
 
                     <p>Contraseña</p>
-                    <br />
 
-                    <input type="password" name="password" value={userData.password} placeholder="Su contraseña" onChange={handleChange}/>
+                    <div >
+                        <input type="password" name="password" value={userData.password} placeholder="Su contraseña" onChange={handleChange} className={style.inputStyle} />
+                    </div>
                     <p>{errors.password}</p>
                     <br />
 
-                    <button disabled={disableHandler()}>Submit</button>
-                
-            </form> 
+                    <button className={style.submitStyle} disabled={disableHandler()} >Submit</button>
+
+                </form>
+
+            </div>
+
         </div>
-        
     )
 }
 
