@@ -1,0 +1,65 @@
+
+.cardBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    width: 350px;
+    height: 300px;
+    background-color: rgba(21, 255, 0, 0.219);
+    border-radius: 20%;
+    box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+    -webkit-box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+    -moz-box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+}
+
+.imgCard {
+    width: 60%;
+    border-radius: 40%;
+}
+
+/* .pj-detail {
+    font-size: 15px;
+    color: white;
+} */
+
+.nameCard {
+    color: aqua;
+    font-size: 18px;
+    margin: 12px;
+}
+
+.nameCard:hover {
+    color: var(--secundario);
+    transition: 600ms;
+}
+
+.favButton {
+    position: relative;
+    top: 29%;
+    right: 23%;
+    border: 1px solid transparent;
+    background-color: transparent;
+    transform: scale(1.3);
+}
+
+.favButton:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.closeButton {
+    position: relative;
+    top: 18.3%;
+    left: 25%;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    background-color: rgba(255, 0, 0, 0.397);
+    font-weight: bold;
+    color: rgb(243, 5, 5);
+}
+
+.closeButton:hover {
+    cursor: pointer;
+}
+

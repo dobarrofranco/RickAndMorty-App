@@ -1,6 +1,6 @@
 import style from './App.css';
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, useNavigate, Route, Routes, useLocation} from 'react-router-dom';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav.jsx';
 import Detail from './components/Detail/Detail';
@@ -24,19 +24,21 @@ function App() {
    // https://rym2-production.up.railway.app/api/character/${id}?key=henrym-dobarrofranco
    // https://rickandmortyapi.com/api/character/${id}
 
-   function onSearch(id) {
+   async function onSearch(id) {
+      
       if (characters.find(char => char.id === Number(id))) {
          alert('Ya existe!!')
          return
-      }else{
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-         if (data.name) {
+      
+      } else {
+         const {data} = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+      
+         if (data.id) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
             window.alert('¡No hay personajes con este ID!');
          }
-      })
+      
       }  
    }
 
@@ -67,28 +69,22 @@ function App() {
 
    const [access, setAccess] = useState(false);
 
-   function login(userData) {
+   async function login(userData) {
       const { email, password } = userData;
 
       const URL = 'http://localhost:3001/rickandmorty/login/';
       
-      axios(URL + `?email=${email}&password=${password}`)
-         .then(({ data }) => {
+      const {data} = await axios(URL + `?email=${email}&password=${password}`)
+         
          const { access } = data;
-         setAccess(data);
+         setAccess(access);
          access && navigate('/home');
-   });
+      
    }
 
-   // function logOut() {
-   //    setAccess(false);
-   // }
-
-   // function notMove() {
-   //    if (location.pathname === '/' && setAccess(false)) {
-         
-   //    }
-   // }
+   function logOut() {
+      setAccess(false);
+   }
 
    useEffect(() => {
       !access && navigate('/');
@@ -99,7 +95,7 @@ function App() {
       
       <div className='App'>
          
-         {location.pathname === '/home' ? <Nav onSearch={onSearch} randomize={randomHandler}></Nav> : null}
+         {location.pathname === '/home' ? <Nav onSearch={onSearch} randomize={randomHandler} logOut={logOut} ></Nav> : null}
 
          <Routes>
 

@@ -1,15 +1,17 @@
-import { connect, useDispatch } from "react-redux"
+import { connect, useDispatch, useSelector } from "react-redux"
 import Card from "../Card/Card"
 import { Link } from "react-router-dom"
 import { filterCards, orderCards, resetCards } from "../../redux/actions"
 import { useState } from "react"
-import './Favorites.modules.css'
+import style from './Favorites.module.css'
 
-function Favorites({myFavorites, onClose, logOut/*, notMove*/}) {
+function Favorites({onClose, logOut}) {
     
     const [aux, setAux] = useState(false);
 
     const dispatch = useDispatch();
+
+    const myFavorites = useSelector((state) => state.myFavorites)
 
     const handleOrder = (event) => {
         dispatch(orderCards(event.target.value))
@@ -33,7 +35,7 @@ function Favorites({myFavorites, onClose, logOut/*, notMove*/}) {
                 </Link>
                 
             <Link to="/">
-                <button onClick={[logOut/*, notMove*/]}>Log out</button>
+                <button onClick={[logOut]}>Log out</button>
             </Link>
 
             <select onChange={handleOrder}>
@@ -42,6 +44,7 @@ function Favorites({myFavorites, onClose, logOut/*, notMove*/}) {
             </select>
 
             <select onChange={handleFilter}>
+                <option value=""></option>
                 <option value="Male">Hombre</option>
                 <option value="Female">Mujer</option>
                 <option value="Genderless">Sin género</option>
@@ -52,38 +55,34 @@ function Favorites({myFavorites, onClose, logOut/*, notMove*/}) {
 
             {myFavorites.length ?
             
-            <h3 className="favoritos">Tus personajes favoritos ❤️</h3>
-            : null}
-
-            {myFavorites.length ? 
+            <h3 className={style.favoritos}>Tus personajes favoritos ❤️</h3>
+            : <h3 className={style.noFavoritos}>No tienes personajes favoritos 💔</h3>}
             
-            <div className="cards">
+            <div className={style.cards}>
                 {myFavorites.map(element => {
                     return <Card
                     onClose={onClose}
                     key={element.id}
                     id={element.id}
                     name={element.name}
-                    status={element.status}
-                    species={element.species}
-                    gender={element.gender}
-                    origin={element.origin}
+                    // status={element.status}
+                    // species={element.species}
+                    // gender={element.gender}
+                    // origin={element.origin}
                     image={element.image}
                     />
                 })}
             </div> 
             
-            : <h3 className="no-favoritos">No tienes personajes favoritos 💔</h3>}
-        
       </div>
     )
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-        myFavorites: state.myFavorites,
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         myFavorites: state.myFavorites,
+//     }
+// }
 
-export default connect(mapStateToProps, null)(Favorites);
+export default Favorites;

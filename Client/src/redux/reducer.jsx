@@ -7,6 +7,7 @@ const initialState = {
 
 export default function favorites(state = initialState, {type, payload}) {
     let sorted;
+    
     switch(type) {
         case ADD_FAV:
             return { 

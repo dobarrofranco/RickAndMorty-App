@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
-import style from './Card.modules.css'
+import style from './Card.module.css'
 
 function Card({name, status, species, gender, origin, image, onClose, id, addFav, removeFav, myFavorites}) {
 
@@ -34,29 +34,35 @@ function Card({name, status, species, gender, origin, image, onClose, id, addFav
       });
    }, [myFavorites]);
 
+   const RotateCard = () => {
+      
+   }
+
    return (
       <div>
 
+
          {
             isFav ? (
-               <button onClick={handleFavorite}>❤️</button>
+               <button className={style.favButton} onClick={handleFavorite}>❤️</button>
             ) : (
-               <button onClick={handleFavorite}>🤍</button>
+               <button className={style.favButton} onClick={handleFavorite}>🤍</button>
             )
          }
 
-         {closeBtn && <button onClick={()=>{onClose(id)}}>X</button>}
+         {closeBtn && <button className={style.closeButton} onClick={()=>{onClose(id)}}>X</button>}
          
+         <div className={style.cardBox}>
 
-         <NavLink to={`/detail/${id}`}>
-            <h2 className={style.name}>{name}</h2>
-         </NavLink>
+            <NavLink to={`/detail/${id}`}><h2 className={style.nameCard}>{name}</h2></NavLink>
          
             {/* <h2>Estado: {status}</h2> */}
-            <h2 className="pj-detail">Especie: {species}</h2>
-            <h2 className="pj-detail">Género: {gender}</h2>
+            {/* <h2 className="pj-detail">Especie: {species}</h2> */}
+            {/* <h2 className="pj-detail">Género: {gender}</h2> */}
             {/* <h2>Origen: {origin}</h2> */}
-            <img src={image} alt={name}/>
+            <img className={style.imgCard} src={image} alt={name}/>
+
+         </div>
          
       </div>
    );

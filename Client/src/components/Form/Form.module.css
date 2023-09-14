@@ -1,6 +1,6 @@
 .backForm {
     height: 100vh;
-    background-image: url(../../images/rick-and-morty-cool-background-t3ynu5ly9m7jq6e2.jpg);
+    background-image: url(../../images/rick-and-morty-cool-background-LOGIN.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -15,8 +15,32 @@
     transform: translate(-50%, -50%);
     width: 250px;
     height: 250px;
-    filter: blur(5px);
+    filter: blur(1px);
     background-color: rgba(21, 255, 0, 0.219);
+    border-radius: 100%;
+    box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+    -webkit-box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+    -moz-box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
+}
+
+.errors {
+    color: red;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.boxFormError {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    filter: blur(1px);
+    background-color: rgba(255, 0, 0, 0.219);
     border-radius: 100%;
     box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
     -webkit-box-shadow: 15px 11px 25px 2px rgba(0,0,0,0.69) inset;
@@ -50,6 +74,7 @@
     
 }
 
-p {
-    margin: 10px;
+.submitStyle:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }

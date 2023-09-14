@@ -46,7 +46,13 @@ function Form({ login }) {
 
         <div className={style.backForm}>
 
-            <div className={style.boxForm}></div>
+            { errors.email || errors.password
+
+            ? <div className={style.boxFormError}></div> 
+
+
+            : <div className={style.boxForm}></div> }
+            
 
             <div className={style.form}>
 
@@ -56,7 +62,8 @@ function Form({ login }) {
                     <div >
                         <input type="text" name="email" value={userData.email} placeholder="Su e-mail" onChange={handleChange} className={style.inputStyle} />
                     </div>
-                    <p>{errors.email}</p>
+                   
+                    <p className={style.errors}>{errors.email}</p>
 
                     <br />
 
@@ -65,7 +72,7 @@ function Form({ login }) {
                     <div >
                         <input type="password" name="password" value={userData.password} placeholder="Su contraseña" onChange={handleChange} className={style.inputStyle} />
                     </div>
-                    <p>{errors.password}</p>
+                    <p className={style.errors}>{errors.password}</p>
                     <br />
 
                     <button className={style.submitStyle} disabled={disableHandler()} >Submit</button>

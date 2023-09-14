@@ -16,6 +16,7 @@
     margin: 0;
     font-family: var(--fuenteParrafos);
     font-size: 1.6rem;
+    background-image: url('./images/Stars.jpg');
   }
   
   /** Globales **/
@@ -42,4 +43,8 @@
   }
   .centrar-texto {
     text-align: center;
+  }
+
+  .App {
+    
   }
